@@ -12,6 +12,7 @@
  *
  */
 
+
 class CustomerList extends ListBase {
     /**
      * Retrieve all subscriptions from the api,

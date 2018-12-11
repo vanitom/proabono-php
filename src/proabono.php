@@ -4,6 +4,18 @@
  * Configuration
  */
 const PROABONO_CONFIG = __DIR__ . '/config.ini';
+/*
+ * Common and Base classes
+ */
+require_once(__DIR__ . '/proabono/ListBase.php');
+require_once(__DIR__ . '/proabono/ProAbonoError.php');
+require_once(__DIR__ . '/proabono/Utils.php');
+
+/**
+ * Request / Response
+ */
+require_once(__DIR__ . '/proabono/Request.php');
+require_once(__DIR__ . '/proabono/Response.php');
 
 /*
  * Customers
@@ -17,11 +29,6 @@ require_once(__DIR__ . '/proabono/Customer.php');
 require_once(__DIR__ . '/proabono/CustomerList.php');
 require_once(__DIR__ . '/proabono/CustomerAddress.php');
 require_once(__DIR__ . '/proabono/CustomerPayment.php');
-
-/**
- * Errors
- */
-require_once(__DIR__ . '/proabono/ProAbonoError.php');
 
 /**
  * Features
@@ -49,12 +56,6 @@ const PATH_PRICING_USAGE = '/v1/Pricing/Usage';
 require_once(__DIR__ . '/proabono/Pricing.php');
 
 /**
- * Request / Response
- */
-require_once(__DIR__ . '/proabono/Request.php');
-require_once(__DIR__ . '/proabono/Response.php');
-
-/**
  * Subscriptions
  */
 const PATH_SUBSCRIPTION = '/v1/Subscription';
@@ -62,11 +63,6 @@ const PATH_SUBSCRIPTIONS = '/v1/Subscriptions';
 
 require_once(__DIR__ . '/proabono/Subscription.php');
 require_once(__DIR__ . '/proabono/SubscriptionList.php');
-
-/**
- * Utils
- */
-require_once(__DIR__ . '/proabono/Utils.php');
 
 /**
  * Usages
