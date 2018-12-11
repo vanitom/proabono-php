@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Configuration
- */
-const PROABONO_CONFIG = __DIR__ . '/config.ini';
 /*
  * Common and Base classes
  */
