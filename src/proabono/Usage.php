@@ -56,6 +56,31 @@ class Usage {
      * @throws Exception
      */
     public function fetch($refFeature, $refCustomer) {
+        /////////// CACHING STRATEGY ///////////
+        if (ProAbono::$useCaching
+            // DO NOT use the cache if there is no ref customer
+            && isset($refCustomer)) {
+            // Search for that customer into the cache
+            $cached = ProAbonoCache::get($refCustomer);
+
+            // get the cached data
+            $usages = UsageList::getCachedData($refCustomer);
+            // if we have data
+            if (isset($usages)
+                // if we have a feature filter as well
+                && isset($refFeature)) {
+
+                // get the related usage
+                $usage = UsageList::getUsageForFeature($usages, $refFeature);
+
+                $this->fill($usage);
+                // success
+                return Response::success();
+
+            }
+            return Response::usageNotFound();
+        }
+        /////////////////////////////////
 
         $url = PATH_USAGE;
 

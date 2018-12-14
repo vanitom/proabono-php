@@ -51,11 +51,12 @@ class Response {
     /**
      * @return Response
      */
-    public static function notFound() {
+    public static function usageNotFound() {
         $response = new Response();
         $response->status = 404;
         $response->error = new ProAbonoError();
-        $response->error->message = 'not found';
+        $response->error->message = 'Not available';
+        $response->error->code = 'Error.Api.Usage.NoneMatching';
         return $response;
     }
 
