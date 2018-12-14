@@ -5,6 +5,10 @@ class ProAbono {
     public static $keyAgent = null;
     public static $keyApi = null;
     public static $endpoint = null;
+    // Applies caching on customer and usage
+    public static $useCaching = true;
+    // Cache expires after 1200 sec (20mn)
+    public static $cacheExpires = 1200;
 
     public static function ensureInitialized() {
 

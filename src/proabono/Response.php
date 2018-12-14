@@ -27,6 +27,8 @@ class Response {
                 || ($this->status == 201)
                 || ($this->status == 204));
     }
+
+
     /**
      * Check if response has data
      *
@@ -36,5 +38,25 @@ class Response {
         return isset($this->data);
     }
 
+
+    /**
+     * @return Response
+     */
+    public static function success() {
+        $response = new Response();
+        $response->status = 200;
+        return $response;
+    }
+
+    /**
+     * @return Response
+     */
+    public static function notFound() {
+        $response = new Response();
+        $response->status = 404;
+        $response->error = new ProAbonoError();
+        $response->error->message = 'not found';
+        return $response;
+    }
 
 }

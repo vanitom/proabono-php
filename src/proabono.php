@@ -4,6 +4,7 @@
  * Common and Base classes
  */
 require_once(__DIR__ . '/proabono/ListBase.php');
+require_once(__DIR__ . '/proabono/ProAbonoCache.php');
 require_once(__DIR__ . '/proabono/ProAbonoError.php');
 require_once(__DIR__ . '/proabono/ProAbono.php');
 require_once(__DIR__ . '/proabono/Utils.php');

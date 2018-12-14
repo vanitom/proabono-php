@@ -77,7 +77,23 @@ class Customer {
      * @throws Exception
      */
     public function fetch($refCustomer) {
-
+        /////////// CACHING STRATEGY ///////////
+        if (ProAbono::$useCaching) {
+            // Search for that customer into the cache
+            $cached = ProAbonoCache::get($refCustomer);
+            // If found
+            if (isset($cached)
+                // If customer is cached
+                && $cached->customer
+                // If not too old
+                && !$cached->is_expired()) {
+                // Fill the current customer with the cached data
+                $this->fill($cached->customer);
+                // Then exit
+                return Response::success();
+            }
+        }
+        /////////////////////////////////
         $url = PATH_CUSTOMER;
 
         $url = Utils::urlParam($url, 'ReferenceCustomer', $refCustomer);
@@ -86,6 +102,9 @@ class Customer {
 
         if ($response->is_success()) {
             $this->fill($response->data);
+
+            // store into the cache
+            ProAbonoCache::storeCustomer($refCustomer, $response->data);
         }
         return $response;
     }
