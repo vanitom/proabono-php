@@ -117,9 +117,7 @@ class Subscription {
      * @throws Exception
      */
     public function fetchById($id) {
-        $url = PATH_SUBSCRIPTION;
-
-        $url = Utils::urlParam($url, 'Id', $id);
+        $url = PATH_SUBSCRIPTION . '/' . $id;
 
         $response = Request::get($url);
 

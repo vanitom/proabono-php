@@ -52,26 +52,25 @@ class Usage {
      *
      * @param $refFeature
      * @param $refCustomer
+     * @param bool $refreshCache
      * @return Response
      * @throws Exception
      */
-    public function fetch($refFeature, $refCustomer) {
+    public function fetch($refFeature, $refCustomer, $refreshCache = false) {
         /////////// CACHING STRATEGY ///////////
         if (ProAbono::$useCaching
             // DO NOT use the cache if there is no ref customer
             && isset($refCustomer)) {
-            // Search for that customer into the cache
-            $cached = ProAbonoCache::get($refCustomer);
 
             // get the cached data
-            $usages = UsageList::getCachedData($refCustomer);
+            $usages = UsageList::getCachedData($refCustomer, $refreshCache);
             // if we have data
             if (isset($usages)
                 // if we have a feature filter as well
                 && isset($refFeature)) {
 
                 // get the related usage
-                $usage = UsageList::getUsageForFeature($usages, $refFeature);
+                $usage = $this->getUsageForFeature($usages, $refFeature);
 
                 $this->fill($usage);
                 // success
@@ -95,6 +94,22 @@ class Usage {
         }
         return $response;
     }
+
+
+    public function getUsageForFeature($usages, $refFeature) {
+        // if no usages, ignore
+        if (!isset($usages))
+            return null;
+
+        foreach ($usages as $usage) {
+
+            if ($usage->ReferenceFeature === $refFeature)
+                return $usage;
+        }
+        // if not found
+        return null;
+    }
+
 
 
     /**

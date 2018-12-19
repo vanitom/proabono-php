@@ -116,7 +116,7 @@ class Customer {
      * @return Response
      * @throws Exception
      */
-    public function save() {
+    public function save($refOffer = null) {
 
         // This is the data we have to send.
         $data = array(
@@ -127,12 +127,16 @@ class Customer {
 
         $url = PATH_CUSTOMER;
 
+        $url = Utils::urlParam($url, 'ReferenceOffer', $refOffer);
+
         // Send url with an array.
         $response = Request::post($url, $data);
 
         // If response is success, fill the data.
         if ($response->is_success()) {
             $this->fill($response->data);
+            // store into the cache
+            ProAbonoCache::storeCustomer($this->refCustomer, $response->data);
         }
         return $response;
     }
