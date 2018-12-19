@@ -52,7 +52,6 @@ class Usage {
      *
      * @param $refFeature
      * @param $refCustomer
-     * @param bool $refreshCache
      * @return Response
      * @throws Exception
      */
@@ -70,7 +69,7 @@ class Usage {
                 && isset($refFeature)) {
 
                 // get the related usage
-                $usage = $this->getUsageForFeature($usages, $refFeature);
+                $usage = UsageList::getUsageForFeature($usages, $refFeature);
 
                 $this->fill($usage);
                 // success
@@ -94,22 +93,6 @@ class Usage {
         }
         return $response;
     }
-
-
-    public function getUsageForFeature($usages, $refFeature) {
-        // if no usages, ignore
-        if (!isset($usages))
-            return null;
-
-        foreach ($usages as $usage) {
-
-            if ($usage->ReferenceFeature === $refFeature)
-                return $usage;
-        }
-        // if not found
-        return null;
-    }
-
 
 
     /**

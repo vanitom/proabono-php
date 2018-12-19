@@ -116,10 +116,8 @@ class UsageList extends ListBase {
 
     public static function getCachedData($refCustomer, $refreshCache) {
 
-
         // Search for that customer into the cache
         $cached = ProAbonoCache::get($refCustomer);
-
         // If found
         if (isset($cached)
             // If usages are cached
@@ -150,14 +148,20 @@ class UsageList extends ListBase {
         return null;
     }
 
+    public static function getUsageForFeature($usages, $refFeature) {
+        // if no usages, ignore
+        if (!isset($usages))
+            return null;
 
-    /**
-     * @param $refCustomer
-     * @param $idCustomer
-     * @param $idSubscription
-     * @return Response
-     * @throws Exception
-     */
+        foreach ($usages as $usage) {
+
+            if ($usage->ReferenceFeature === $refFeature)
+                return $usage;
+        }
+        // if not found
+        return null;
+    }
+
     public function validateSubscription($refCustomer, $idCustomer, $idSubscription) {
 
         $url = PATH_USAGES;
