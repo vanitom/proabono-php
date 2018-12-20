@@ -57,26 +57,29 @@ class Usage {
      */
     public function fetch($refFeature, $refCustomer, $refreshCache = false) {
         /////////// CACHING STRATEGY ///////////
-        if (ProAbono::$useCaching
-            // DO NOT use the cache if there is no ref customer
-            && isset($refCustomer)) {
+        if (ProAbono::$useCaching) {
 
             // get the cached data
-            $usages = UsageList::getCachedData($refCustomer, $refreshCache);
-            // if we have data
-            if (isset($usages)
-                // if we have a feature filter as well
-                && isset($refFeature)) {
+            $usages = UsageList::ensureCachedData($refCustomer, $refreshCache);
 
-                // get the related usage
-                $usage = UsageList::getUsageForFeature($usages, $refFeature);
-
-                $this->fill($usage);
-                // success
-                return Response::success();
-
+            // if we have no data
+            if (!isset($usages)) {
+                return Response::usageNotFound();
             }
-            return Response::usageNotFound();
+
+            // get the related usage
+            $usage = UsageList::getUsageForFeature($usages, $refFeature);
+
+
+            if (!isset($usage)) {
+                return Response::usageNotFound();
+            }
+
+            $this->fill($usage);
+
+            // success
+            return Response::success();
+
         }
         /////////////////////////////////
 
@@ -152,6 +155,10 @@ class Usage {
         // If response is success, fill the data.
         if ($response->is_success()) {
             $this->fill($response->data);
+
+            // We refresh the cache
+            UsageList::ensureCachedData($this->refCustomer, true);
+
         }
         return $response;
     }

@@ -22,11 +22,9 @@ class UsageList extends ListBase {
 
         /////////// CACHING STRATEGY ///////////
         if (ProAbono::$useCaching) {
-            // Search for that customer into the cache
-            $cached = ProAbonoCache::get($refCustomer);
 
             // get the cached data
-            $usages = UsageList::getCachedData($refCustomer, $refreshCache);
+            $usages = UsageList::ensureCachedData($refCustomer, $refreshCache);
             // if we have data
             if (isset($usages)) {
                 // Set pagination properties.
@@ -114,7 +112,7 @@ class UsageList extends ListBase {
         return $response;
     }
 
-    public static function getCachedData($refCustomer, $refreshCache) {
+    public static function ensureCachedData($refCustomer, $refreshCache) {
 
         // Search for that customer into the cache
         $cached = ProAbonoCache::get($refCustomer);
@@ -185,6 +183,5 @@ class UsageList extends ListBase {
         return $response;
 
     }
-
 
 }
