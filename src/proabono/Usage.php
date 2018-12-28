@@ -2,47 +2,111 @@
 
 
 /**
- * Class Usage
+ * Usage model
+ *
+ * Manage the access to the api only for Usage.
+ *
+ * @link https://docs.proabono.com/api/#api---usages
+ * @copyright Copyright (c) 2018 ProAbono
+ * @license MIT
  */
 
 
 class Usage {
 
 
-    // integer / Id of the Segment in which the Customer has been created
+    /**
+     * @var integer $idSegment Id of the Segment in which the Customer has been created
+     */
     public $idSegment;
-    // integer / Id of the Feature related to this Usage
+
+    /**
+     * @var integer $idFeature Id of the Feature related to this Usage
+     */
     public $idFeature;
-    // integer / Id of the Customer related to this Usage
+
+    /**
+     * @var integer $idCustomer Id of the Customer related to this Usage
+     */
     public $idCustomer;
-    // integer / Id of the Subscription related to this Usage. If not returned, it means multiple subscriptions matches that usage
+
+    /**
+     * @var integer $idSubscription
+     *
+     * Id of the Subscription related to this Usage.
+     * If not returned, it means multiple subscriptions matches that usage
+     */
     public $idSubscription;
-    // string / Reference of the segment in which the offer has been created
+
+    /**
+     * @var string $refSegment Reference of the segment in which the offer has been created
+     */
     public $refSegment;
-    // string / Reference of the Feature shared with your site/service and ProAbono
+
+    /**
+     * @var string $refFeature Reference of the Feature shared with your site/service and ProAbono
+     */
     public $refFeature;
-    // string / The unique identifier used within your own application for this offer
+
+    /**
+     * @var string $refCustomer The unique identifier used within your own application for this offer
+     */
     public $refCustomer;
-    // string / Type of the Feature (OnOff, Limitation, Consumption)
+
+    /**
+     * @var string $typeFeature Type of the Feature (OnOff, Limitation, Consumption)
+     */
     public $typeFeature;
-    // boolean / (Only for OnOff offer) It indicates if the offer is included in the subscription of the offer
-    // False indicates that the offer can be enabled
+
+    /**
+     * @var bool $is_included
+     *
+     * (Only for OnOff offer)
+     * It indicates if the offer is included in the subscription of the offer
+     * False indicates that the offer can be enabled
+     */
     public $is_included;
-    // boolean / (Only for OnOff offer) It indicates if the offer is enabled in the subscription of the offer
+
+    /**
+     * @var bool $is_enabled
+     *
+     * (Only for OnOff offer)
+     * It indicates if the offer is enabled in the subscription of the offer
+     */
     public $is_enabled;
-    // integer / (Only for Limitation or Consumption offer) Limitation, quota or volume of the Feature available in the Subscription of the Customer.
-    // If not provided it means ‘unlimited’
+
+    /**
+     * @var integer $quantityIncluded
+     *
+     * (Only for Limitation or Consumption offer)
+     * Limitation, quota or volume of the Feature available in the Subscription of the Customer.
+     * If not provided it means ‘unlimited’
+     */
     public $quantityIncluded;
-    // integer / (Only for Limitation or Consumption offer) Limitation, quota or volume of the Feature currently used in the Subscription of the Customer.
-    // If not provided it means ‘unlimited’
+
+    /**
+     * @var integer $quantityCurrent
+     *
+     * (Only for Limitation or Consumption offer)
+     * Limitation, quota or volume of the Feature currently used in the Subscription of the Customer.
+     * If not provided it means ‘unlimited’
+     */
     public $quantityCurrent;
-    // string / This is the start of the considered billing period. Used to enforce quota (like 10 emails per months)
+
+    /**
+     * @var string $datePeriodStart
+     *
+     * This is the start of the considered billing period.
+     * Used to enforce quota (like 10 emails per months)
+     */
     public $datePeriodStart;
-    // string / This is the end of the considered billing period. Used to enforce quota
+
+    /**
+     * @var string $datePeriodEnd This is the end of the considered billing period. Used to enforce quota
+     */
     public $datePeriodEnd;
 
     public $dateStamp;
-
     public $increment;
 
 
@@ -52,10 +116,12 @@ class Usage {
      *
      * @param $refFeature
      * @param $refCustomer
+     * @param $refreshCache
      * @return Response
      * @throws Exception
      */
     public function fetch($refFeature, $refCustomer, $refreshCache = false) {
+
         /////////// CACHING STRATEGY ///////////
         if (ProAbono::$useCaching) {
 
@@ -79,9 +145,8 @@ class Usage {
 
             // success
             return Response::success();
-
         }
-        /////////////////////////////////
+        ////////////////////////////////////////
 
         $url = PATH_USAGE;
 

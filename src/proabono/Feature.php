@@ -2,22 +2,42 @@
 
 
 /**
- * Class Feature
+ * Feature model
+ *
+ * Manage the access to the api only for Feature.
+ *
+ * @link https://docs.proabono.com/api/#api---features
+ * @copyright Copyright (c) 2018 ProAbono
+ * @license MIT
  */
 
 
 class Feature {
 
 
-    // integer / Id of the Feature Object
+    /**
+     * @var int $id Id of the Feature Object
+     */
     public $id;
-    // string / The unique identifier used within your own application for this Feature
+
+    /**
+     * @var string $refFeature The unique identifier used within your own application for this Feature
+     */
     public $refFeature;
-    // string / Title of Feature
+
+    /**
+     * @var string $titleLocalized Title of Feature
+     */
     public $titleLocalized;
-    // string / Description of the Feature
+
+    /**
+     * @var string $descriptionLocalized Description of the Feature
+     */
     public $descriptionLocalized;
-    // boolean / Visibility of the Feature in offers and hosted pages
+
+    /**
+     * @var bool $is_visible Visibility of the Feature in offers and hosted pages
+     */
     public $is_visible;
 
 

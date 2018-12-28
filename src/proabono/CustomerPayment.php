@@ -1,29 +1,29 @@
 <?php
 
+
 /**
- * Customer Payment Settings object
+ * Payment Settings model
  *
  * Manage the access to the api for the payment settings.
  *
- * @link https://docs.proabono.com/api/#api---customers
- *
- * @author Karim Serbouty <kserbouty@gmail.com>
  * @copyright Copyright (c) 2018 ProAbono
  * @license MIT
- *
  */
+
 
 class CustomerPayment {
 
+
     /**
-     * @var
+     * @var string $typePayment
      */
     public $typePayment;
 
     /**
-     * @var
+     * @var string $dateNextBilling
      */
     public $dateNextBilling;
+
 
     /**
      * Retrieve a payment settings by the reference customer.
@@ -45,6 +45,7 @@ class CustomerPayment {
         }
         return $response;
     }
+
 
     /**
      * Save the payment settings by the reference customer.
@@ -75,6 +76,7 @@ class CustomerPayment {
 
     }
 
+
     /**
      * Fill our object with the raw ProAbono data.
      *
@@ -84,5 +86,6 @@ class CustomerPayment {
         $this->typePayment = isset($data->TypePayment) ? $data->TypePayment : null;
         $this->dateNextBilling = isset($data->DateNextBilling) ? $data->DateNextBilling : null;
     }
+
 
 }

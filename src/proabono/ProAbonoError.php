@@ -2,7 +2,10 @@
 
 
 /**
- * Class ProAbonoError
+ * ProAbono Error model
+ *
+ * @copyright Copyright (c) 2018 ProAbono
+ * @license MIT
  */
 
 

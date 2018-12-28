@@ -2,11 +2,15 @@
 
 
 /**
- * Class Request
+ * Request model.
+ *
+ * @copyright Copyright (c) 2018 ProAbono
+ * @license MIT
  */
 
 
 class Request {
+
 
     /**
      * Administration of the api call, using curl to make the request.
@@ -16,6 +20,7 @@ class Request {
      * @throws Exception
      */
     public static function get($url) {
+
         // Initialization of the configuration.
         ProAbono::ensureInitialized();
 
@@ -91,13 +96,14 @@ class Request {
      * Prepare the response after the curl processing.
      *
      * Do the error administration,
-     * return a ProAbonoError object if is_succes turn false.
+     * return a ProAbonoError object if is_succes return false.
      *
      * @param $rawData
      * @param $http_status
      * @return Response
      */
     private static function prepareResponse($rawData, $http_status) {
+
         $decoded = json_decode($rawData);
 
         $response = new Response();
@@ -108,7 +114,7 @@ class Request {
             $response->data = $decoded;
         }
 
-        // Case Code 422:
+        // Case Code 422 : Request syntax is correct, but its content is not.
         else if ($response->status == 422) {
 
             $response->errors = array();
@@ -128,6 +134,7 @@ class Request {
 
         // Case Single Error:
         else {
+
             $error = new ProAbonoError();
 
             $error->code = isset($decoded->Code) ? $decoded->Code : null;

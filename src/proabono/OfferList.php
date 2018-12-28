@@ -1,12 +1,22 @@
 <?php
 
 
+/**
+ * Offers List model
+ *
+ * Manage multiple offers in an object.
+ *
+ * @link https://docs.proabono.com/api/#api---offers
+ * @copyright Copyright (c) 2018 ProAbono
+ * @license MIT
+ */
+
+
 class OfferList extends ListBase {
 
 
     /**
      * Retrieve all offers from the api.
-     *
      */
     function fetch() {
 

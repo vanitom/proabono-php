@@ -2,11 +2,18 @@
 
 
 /**
- * Class FeatureList
+ * Features List model
+ *
+ * Manage multiple features in an object.
+ *
+ * @link https://docs.proabono.com/api/#api---features
+ * @copyright Copyright (c) 2018 ProAbono
+ * @license MIT
  */
 
 
 class FeatureList extends ListBase {
+
 
     /**
      * Retrieve all features from the api.

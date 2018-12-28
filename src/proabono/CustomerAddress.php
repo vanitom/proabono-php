@@ -1,17 +1,17 @@
 <?php
 
 /**
- * Customer Billing Address object
+ * Billing Address model
  *
  * Manage the access to the api for the billing address.
  *
- * @author Karim Serbouty <kserbouty@gmail.com>
  * @copyright Copyright (c) 2018 ProAbono
  * @license MIT
- *
  */
 
+
 class CustomerAddress {
+
 
     /**
      * @var string $company

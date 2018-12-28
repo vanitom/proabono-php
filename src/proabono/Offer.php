@@ -2,47 +2,105 @@
 
 
 /**
- * Class Offer
+ * Offer model
+ *
+ * Manage the access to the api only for Offer.
+ *
+ * @link https://docs.proabono.com/api/#api---offers
+ * @copyright Copyright (c) 2018 ProAbono
+ * @license MIT
  */
 
 
 class Offer {
 
 
-    // integer / Id of the Offer Object
+    /**
+     * @var integer $id Id of the Offer Object
+     */
     public $id;
-    // string / Name of the Offer
+
+    /**
+     * @var string $name Name of the Offer
+     */
     public $name;
-    // string / Identifier used within your own application for this offer
-    // Unique for a given segment, meaning you can decline the same offer in multiple segments
+
+    /**
+     * @var string $refOffer
+     *
+     * Identifier used within your own application for this offer
+     * Unique for a given segment, meaning you can decline the same offer in multiple segments
+     */
     public $refOffer;
-    // boolean / Visibility of the offer in the hosted pages
+
+    /**
+     * @var bool $is_visible Visibility of the offer in the hosted pages
+     */
     public $is_visible;
-    // integer / Amount of the Upfront fee, Setup fee or Initial fee of your offer in cents
+
+    /**
+     * @var integer $amountUpFront Amount of the Upfront fee, Setup fee or Initial fee of your offer in cents
+     */
     public $amountUpFront;
-    // integer / Amount of the Trial period in cents
+
+    /**
+     * @var integer $amountTrial Amount of the Trial period in cents
+     */
     public $amountTrial;
-    // number / Number of Trial Time Unit
+
+    /**
+     * @var string $durationTrial
+     */
     public $durationTrial;
-    // string / Time Unit of Trial
+
+    /**
+     * @var string $unitTrial Time Unit of Trial
+     */
     public $unitTrial;
-    // integer / Amount of each recurrence in cents
+
+    /**
+     * @var integer $amountRecurrence Amount of each recurrence in cents
+     */
     public $amountRecurrence;
-    // integer / Number of Recurrence
+
+    /**
+     * @var integer $durationRecurrence Number of Recurrence
+     */
     public $durationRecurrence;
-    // string / Time Unit of Recurrence
+
+    /**
+     * @var string $unitRecurrence Time Unit of Recurrence
+     */
     public $unitRecurrence;
-    // integer / Number of Recurrences
+
+    /**
+     * @var integer $countRecurrence Number of Recurrences
+     */
     public $countRecurrence;
-    // integer / Minimum recurrences the offer will be committed to pay
+
+    /**
+     * @var integer $countMinRecurrences Minimum recurrences the offer will be committed to pay
+     */
     public $countMinRecurrences;
-    // integer / Amount of the Termination Fee in cents
+
+    /**
+     * @var integer $amountTermination Amount of the Termination Fee in cents
+     */
     public $amountTermination;
-    // string / State of the Offer
+
+    /**
+     * @var string $stateLife State of the Offer
+     */
     public $stateLife;
-    // string / Collection of Features with Quantities and Properties
+
+    /**
+     * @var string $features Collection of Features with Quantities and Properties
+     */
     public $features;
-    // string / Useful links concerning the Offer
+
+    /**
+     * @var string $links Useful links concerning the Offer
+     */
     public $links;
 
 

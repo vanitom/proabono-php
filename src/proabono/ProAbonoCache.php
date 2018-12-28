@@ -1,16 +1,19 @@
 <?php
 
 /**
- * Cached data for a single customer.
+ * Cache model
  *
+ * Cached data for a single customer
  *
+ * @copyright Copyright (c) 2018 ProAbono
+ * @license MIT
  */
 
 
 class ProAbonoCache {
 
-    ///////////////////////////////////////////////////////////
-    /// STATIC
+
+    /////////////// STATIC ///////////////
 
     public static function get($refCustomer) {
         // look for the cache-by-user table
@@ -90,8 +93,10 @@ class ProAbonoCache {
         $_SESSION['PROABONO_CACHE_BY_USER'] = $cacheByCustomer;
     }
 
-        ///////////////////////////////////////////////////////////
-    /// INSTANCE
+    //////////////////////////////////////
+
+
+    ////////////// INSTANCE //////////////
 
     public $customer = null;
     public $usages = null;
@@ -101,5 +106,7 @@ class ProAbonoCache {
         // if timestamp is older than x seconds
         return (time() - $this->timestamp) >= ProAbono::$cacheExpires ;
     }
+
+    //////////////////////////////////////
 
 }

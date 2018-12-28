@@ -2,16 +2,13 @@
 
 
 /**
- * Customer object
+ * Customer model
  *
  * Manage the access to the api only for Customer.
  *
  * @link https://docs.proabono.com/api/#api---customers
- *
- * @author Karim Serbouty <kserbouty@gmail.com>
  * @copyright Copyright (c) 2018 ProAbono
  * @license MIT
- *
  */
 
 
@@ -77,6 +74,7 @@ class Customer {
      * @throws Exception
      */
     public function fetch($refCustomer) {
+
         /////////// CACHING STRATEGY ///////////
         if (ProAbono::$useCaching) {
             // Search for that customer into the cache
@@ -93,7 +91,8 @@ class Customer {
                 return Response::success();
             }
         }
-        /////////////////////////////////
+        ////////////////////////////////////////
+
         $url = PATH_CUSTOMER;
 
         $url = Utils::urlParam($url, 'ReferenceCustomer', $refCustomer);
@@ -102,8 +101,7 @@ class Customer {
 
         if ($response->is_success()) {
             $this->fill($response->data);
-
-            // store into the cache
+            // Store into the cache
             ProAbonoCache::storeCustomer($refCustomer, $response->data);
         }
         return $response;
@@ -113,9 +111,9 @@ class Customer {
     /**
      * Update or save the customer data.
      *
+     * @param null $refOffer
      * @return Response
      * @throws Exception
-     *
      */
     public function save($refOffer = null) {
 
@@ -160,5 +158,6 @@ class Customer {
         $this->metadata = isset($data->Metadata) ? $data->Metadata : null;
         $this->links = Utils::toLinks(isset($data->Links) ? $data->Links : null);
     }
+
 
 }

@@ -1,6 +1,16 @@
 <?php
 
 
+/**
+ * Compute Pricing model
+ *
+ * Manage the access to the api only for Compute Pricing.
+ *
+ * @link https://docs.proabono.com/api/#api---compute-pricing
+ * @copyright Copyright (c) 2018 ProAbono
+ * @license MIT
+ */
+
 
 class Pricing {
 
@@ -26,6 +36,13 @@ class Pricing {
     public $details;
 
 
+    /**
+     * Fetch compute pricing for an usage.
+     *
+     * @param $usage
+     * @return Response
+     * @throws Exception
+     */
     public function computeForUsage($usage) {
 
         $url = PATH_PRICING_USAGE;
@@ -62,7 +79,6 @@ class Pricing {
         }
 
         return $response;
-
     }
 
 

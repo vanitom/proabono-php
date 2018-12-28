@@ -2,7 +2,13 @@
 
 
 /**
- * Class UsageList
+ * Usages List model
+ *
+ * Manage multiple usages in an object.
+ *
+ * @link https://docs.proabono.com/api/#api---usages
+ * @copyright Copyright (c) 2018 ProAbono
+ * @license MIT
  */
 
 
@@ -11,7 +17,7 @@ class UsageList extends ListBase {
 
     /**
      * Retrieve all usages from the api,
-     * by a reference subscription and a reference feature.
+     * by a reference customer.
      *
      * @param $refCustomer
      * @param bool $refreshCache
@@ -21,6 +27,7 @@ class UsageList extends ListBase {
     function fetchByCustomer($refCustomer, $refreshCache = false) {
 
         /////////// CACHING STRATEGY ///////////
+
         if (ProAbono::$useCaching) {
 
             // get the cached data
@@ -46,17 +53,14 @@ class UsageList extends ListBase {
             }
             return Response::usageNotFound();
         }
+
         /////////////////////////////////
 
-        // if we do not use the cache
+        // If we do not use the cache
 
         $url = PATH_USAGES;
 
-        $url = Utils::urlParam($url, 'Page', $page);
-
         $url = Utils::urlParam($url, 'ReferenceCustomer', $refCustomer);
-
-        $url = Utils::urlParam($url, 'ReferenceFeature', $refFeature);
 
         $response = Request::get($url);
 
@@ -81,6 +85,16 @@ class UsageList extends ListBase {
         return $response;
     }
 
+
+    /**
+     * Retrieve all usages from the api,
+     * by a reference feature.
+     *
+     * @param $refFeature
+     * @param $page
+     * @return Response
+     * @throws Exception
+     */
     function fetchByFeature($refFeature, $page) {
 
         $url = PATH_USAGES;
@@ -112,6 +126,13 @@ class UsageList extends ListBase {
         return $response;
     }
 
+
+    /**
+     * @param $refCustomer
+     * @param $refreshCache
+     * @return null
+     * @throws Exception
+     */
     public static function ensureCachedData($refCustomer, $refreshCache) {
 
         // Search for that customer into the cache
@@ -146,6 +167,12 @@ class UsageList extends ListBase {
         return null;
     }
 
+
+    /**
+     * @param $usages
+     * @param $refFeature
+     * @return null
+     */
     public static function getUsageForFeature($usages, $refFeature) {
         // if no usages, ignore
         if (!isset($usages))
@@ -160,6 +187,14 @@ class UsageList extends ListBase {
         return null;
     }
 
+
+    /**
+     * @param $refCustomer
+     * @param $idCustomer
+     * @param $idSubscription
+     * @return Response
+     * @throws Exception
+     */
     public function validateSubscription($refCustomer, $idCustomer, $idSubscription) {
 
         $url = PATH_USAGES;
@@ -181,7 +216,7 @@ class UsageList extends ListBase {
 
         }
         return $response;
-
     }
+
 
 }

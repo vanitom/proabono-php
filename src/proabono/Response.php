@@ -2,7 +2,10 @@
 
 
 /**
- * Class Response
+ * Response model
+ *
+ * @copyright Copyright (c) 2018 ProAbono
+ * @license MIT
  */
 
 

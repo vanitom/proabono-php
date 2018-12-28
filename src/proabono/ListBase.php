@@ -2,13 +2,12 @@
 
 
 /**
- * Base class for all list objects.
+ * Base class for all list objects
  *
- * @author Karim Serbouty <kserbouty@gmail.com>
  * @copyright Copyright (c) 2018 ProAbono
  * @license MIT
- *
  */
+
 
 class ListBase implements Iterator, Countable {
 
@@ -16,13 +15,24 @@ class ListBase implements Iterator, Countable {
     private $items = null;
     private $position = 0;
 
-    // Page number your are on.
+    /**
+     * @var null $page Page number your are on.
+     */
     public $page = null;
-    // Maximum number of items per page.
+
+    /**
+     * @var null $sizePage Maximum number of items per page.
+     */
     public $sizePage = null;
-    // Number of items on the current page.
+
+    /**
+     * @var null $count Number of items on the current page.
+     */
     public $count = null;
-    // Number of items in this collection.
+
+    /**
+     * @var null $totalItems Number of items in this collection.
+     */
     public $totalItems = null;
 
 
@@ -40,8 +50,6 @@ class ListBase implements Iterator, Countable {
 
     /**
      * Return the key of the current element.
-     *
-     * @return integer|mixed
      */
     public function key() {
         return $this->position;
@@ -71,15 +79,13 @@ class ListBase implements Iterator, Countable {
 
     /**
      * Return the current element.
-     *
-     * @return mixed
      */
     public function current() {
         if (!isset($this->items))
             return null;
 
         return $this->items[$this->position];
-    }
+    }    //
 
 
     /**
@@ -96,7 +102,7 @@ class ListBase implements Iterator, Countable {
 
 
     /**
-     * Adds an element to the list
+     * Initialize the pagination.
      *
      * @param $pagination
      */

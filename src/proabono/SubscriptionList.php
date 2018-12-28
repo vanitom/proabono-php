@@ -1,6 +1,17 @@
 <?php
 
 
+/**
+ * Subscriptions List model
+ *
+ * Manage multiple subscriptions in an object.
+ *
+ * @link https://docs.proabono.com/api/#api---subscriptions
+ * @copyright Copyright (c) 2018 ProAbono
+ * @license MIT
+ */
+
+
 class SubscriptionList extends ListBase {
 
 

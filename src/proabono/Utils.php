@@ -2,14 +2,16 @@
 
 
 /**
- * Class Utils
+ * Utility model
+ *
+ * @copyright Copyright (c) 2018 ProAbono
+ * @license MIT
  */
 
 
 class Utils {
 
 
-    //---toString-------------------------------------------------------------------------------------------------------
     /**
      * Replace an empty string by a null value.
      *
@@ -17,15 +19,12 @@ class Utils {
      * @return null
      */
     public static function toString($string) {
-        // This is a conditional operator.
         return ($string == '')
             ? null
             : $string;
     }
-    //------------------------------------------------------------------------------------------------------------------
 
 
-    //---toLinks--------------------------------------------------------------------------------------------------------
     /**
      * Create an associative array from raw ProAbono links.
      *
@@ -43,10 +42,8 @@ class Utils {
         }
         return $links;
     }
-    //------------------------------------------------------------------------------------------------------------------
 
 
-    //---urlParam-------------------------------------------------------------------------------------------------------
     /**
      * Append given parameter at the end of the given url.
      *
@@ -67,7 +64,6 @@ class Utils {
         }
         return $url;
     }
-    //------------------------------------------------------------------------------------------------------------------
 
 
 }

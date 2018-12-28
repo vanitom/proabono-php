@@ -2,20 +2,21 @@
 
 
 /**
- * Customers List object
+ * Customers List model
  *
  * Manage multiple customers in an object.
  *
- * @author Karim Serbouty <kserbouty@gmail.com>
+ * @link https://docs.proabono.com/api/#api---customers
  * @copyright Copyright (c) 2018 ProAbono
  * @license MIT
- *
  */
 
 
 class CustomerList extends ListBase {
+
+
     /**
-     * Retrieve all subscriptions from the api,
+     * Retrieve all customers from the api,
      * by the page of the list.
      *
      * @param $page

@@ -2,86 +2,206 @@
 
 
 /**
- * Class Subscription
+ * Subscription model
+ *
+ * Manage the access to the api only for Subscription.
+ *
+ * @link https://docs.proabono.com/api/#api---subscriptions
+ * @copyright Copyright (c) 2018 ProAbono
+ * @license MIT
  */
 
 
 class Subscription {
 
 
-    // integer / Id of your Subscription
+    /**
+     * @var integer $id Id of your Subscription
+     */
     public $id;
-    // integer / Id of the Segment in which your offer has been created/added
+
+    /**
+     * @var integer $idSegment Id of the Segment in which your offer has been created/added
+     */
     public $idSegment;
-    // integer / Id of the Offer subscribed
+
+    /**
+     * @var integer $idOffer Id of the Offer subscribed
+     */
     public $idOffer;
-    // integer / Identifier of the Customer
+
+    /**
+     * @var integer $idCustomer Identifier of the Customer
+     */
     public $idCustomer;
-    // integer / Identifier of the Customer who buys
+
+    /**
+     * @var integer $idCustomerBuyer Identifier of the Customer who buys
+     */
     public $idCustomerBuyer;
-    // string / Reference of the Segment in which your offer has been created/added
+
+    /**
+     * @var string $refSegment Reference of the Segment in which your offer has been created/added
+     */
     public $refSegment;
-    // string / Reference of the Offer subscribed
+
+    /**
+     * @var string $refOffer Reference of the Offer subscribed
+     */
     public $refOffer;
-    // string / The unique identifier used within your own application for this offer
+
+    /**
+     * @var string $refCustomer The unique identifier used within your own application for this offer
+     */
     public $refCustomer;
-    // string / Reference of the Customer who buys (Tips: Use your own id user)
+
+    /**
+     * @var string $refCustomerBuyer Reference of the Customer who buys (Tips: Use your own id user)
+     */
     public $refCustomerBuyer;
-    // string / State of the Subscription
+
+    /**
+     * @var string $stateSubscription State of the Subscription
+     */
     public $stateSubscription;
-    // string / Start Date of the Subscription
+
+    /**
+     * @var string $dateStart Start Date of the Subscription
+     */
     public $dateStart;
-    // string / Start Date of the billing period
+
+    /**
+     * @var string $datePeriodStart Start Date of the billing period
+     */
     public $datePeriodStart;
-    // string / End Date of the billing period
+
+    /**
+     * @var string $datePeriodTerm End Date of the billing period
+     */
     public $datePeriodTerm;
-    // string / Term Date of the Subscription
+
+    /**
+     * @var string $dateTerm Term Date of the Subscription
+     */
     public $dateTerm;
-    // string / Estimated State of the Subscription after the current period
+
+    /**
+     * @var string $stateSubscriptionAfterTerm Estimated State of the Subscription after the current period
+     */
     public $stateSubscriptionAfterTerm;
-    // boolean / Indicates if the current period is a trial period or not
+
+    /**
+     * @var bool $is_trial Indicates if the current period is a trial period or not
+     */
     public $is_trial;
-    // integer / Number of days remaining in the trial period
+
+    /**
+     * @var integer $countDaysTrial Number of days remaining in the trial period
+     */
     public $countDaysTrial;
-    // boolean / Indicates if the Customer is still in the minimum commitment period
+
+    /**
+     * @var bool $is_engaged Indicates if the Customer is still in the minimum commitment period
+     */
     public $is_engaged;
-    // boolean / Indicates if the Customer is currently billable
+
+    /**
+     * @var bool $is_customer_billable Indicates if the Customer is currently billable
+     */
     public $is_customer_billable;
-    // boolean /  Indicates if the Customer has exceeded the max duration limit of due payments
-    // and/or the max limit of accumulated amount of due payments
+
+    /**
+     * @var bool $is_payment_capping_reached
+     *
+     * Indicates if the Customer has exceeded the max duration limit of due payments
+     * and/or the max limit of accumulated amount of due payments
+     */
     public $is_payment_capping_reached;
-    // string / Date of the Customer Next Billing
+
+    /**
+     * @var string $dateNextBilling Date of the Customer Next Billing
+     */
     public $dateNextBilling;
-    // string / Title of the Subscription in the language of the Customer
+
+    /**
+     * @var string $titleLocalized Title of the Subscription in the language of the Customer
+     */
     public $titleLocalized;
-    // integer / Amount of the Upfront fee, Setup fee or Initial fee of your offer in cents
+
+    /**
+     * @var integer $amountUpFront Amount of the Upfront fee, Setup fee or Initial fee of your offer in cents
+     */
     public $amountUpFront;
-    // integer / Amount of the Trial period in cents
+
+    /**
+     * @var integer $amountTrial Amount of the Trial period in cents
+     */
     public $amountTrial;
-    // integer / Number of Trial Time Unit
+
+    /**
+     * @var integer $durationTrial Number of Trial Time Unit
+     */
     public $durationTrial;
-    // string / Time Unit of Trial
+
+    /**
+     * @var string $unitTrial Time Unit of Trial
+     */
     public $unitTrial;
-    // integer / Amount of each recurrence in cents
+
+    /**
+     * @var integer $amountRecurrence Amount of each recurrence in cents
+     */
     public $amountRecurrence;
-    // integer / Number of Recurrence Time Unit
+
+    /**
+     * @var integer $durationRecurrence Number of Recurrence Time Unit
+     */
     public $durationRecurrence;
-    // string / Time Unit of Recurrence
+
+    /**
+     * @var string $unitRecurrence Time Unit of Recurrence
+     */
     public $unitRecurrence;
-    // integer / Number of Recurrences
+
+    /**
+     * @var integer $countRecurrences Number of Recurrences
+     */
     public $countRecurrences;
-    // integer / Minimum recurrences the offer will be committed to pay
+
+    /**
+     * @var integer $countMinRecurrences Minimum recurrences the offer will be committed to pay
+     */
     public $countMinRecurrences;
-    // integer / Amount of the Termination Fee in cents
+
+    /**
+     * @var integer $amountTermination Amount of the Termination Fee in cents
+     */
     public $amountTermination;
-    // Collection of Features + theirs usages
-    // (Can be empty if the Offer contained no offer when it was subscribed
+
+    /**
+     * @var mixed $features
+     *
+     * Collection of Features and theirs usages
+     * (Can be empty if the Offer contained no offer when it was subscribed)
+     */
     public $features;
-    // integer / Date of the last update of the Subscription
+
+    /**
+     * @var integer $dateUpdate Date of the last update of the Subscription
+     */
     public $dateUpdate;
-    // string / A set of key/value pairs that you can add to a subscription
+
+    /**
+     * @var string $meta A set of key/value pairs that you can add to a subscription
+     */
     public $meta;
-    // string / Collection of LinkArray. The LinkArray in the collection depends on the Subscription State
+
+    /**
+     * @var mixed $links
+     *
+     * Collection of links.
+     * Links in the collection depends on the Subscription State
+     */
     public $links;
 
 
