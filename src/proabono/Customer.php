@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Customer model
  *
@@ -10,10 +9,7 @@
  * @copyright Copyright (c) 2018 ProAbono
  * @license MIT
  */
-
-
 class Customer {
-
 
     /**
      * @var int $id Id of your offer.
@@ -65,7 +61,6 @@ class Customer {
      */
     public $links;
 
-
     /**
      * Retrieve a subscription by the reference customer.
      *
@@ -107,7 +102,6 @@ class Customer {
         return $response;
     }
 
-
     /**
      * Update or save the customer data.
      *
@@ -119,9 +113,14 @@ class Customer {
 
         // This is the data we have to send.
         $data = array(
-            'ReferenceCustomer' => Utils::toString($this->refCustomer),
+            'Email' => Utils::toString($this->email),
             'Name' => Utils::toString($this->name),
-            'Email' => Utils::toString($this->email)
+            'ReferenceCustomer' => Utils::toString($this->refCustomer),
+            'Language' => Utils::toString($this->language),
+            'ReferenceSegment' => Utils::toString($this->refSegment),
+            'ReferenceOffer' => $refOffer,
+            'ReferenceAffiliation' => Utils::toString($this->refAffiliation),
+            'Metadata' => $this->metadata,
         );
 
         $url = PATH_CUSTOMER;
@@ -158,6 +157,4 @@ class Customer {
         $this->metadata = isset($data->Metadata) ? $data->Metadata : null;
         $this->links = Utils::toLinks(isset($data->Links) ? $data->Links : null);
     }
-
-
 }
